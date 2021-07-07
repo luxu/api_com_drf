@@ -1,0 +1,53 @@
+name: API feita com DRF
+
+on: [pull_request]
+
+jobs:
+  build:
+    env:
+      PIPENV_NO_INHERIT: 1
+      PIPENV_IGNORE_VIRTUALENVS: 1
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:11.5
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        ports: [ '5432:5432' ]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.9
+    - name: Copying configurations
+      run: |
+        cp contrib/env-sample .env
+    - name: Install Dependencies
+      run: |
+        pip install -q -r requirements.txt
+    - name: Lint with flake8
+      run: |
+        flake8 .
+    - name: Test with pytest
+      run: |
+        pytest --cov=folder_principal/tests
+    - name: Posting Coverage
+      env:
+        CODECOV_TOKEN: "bfc21594-7a74-4130-9af9-a992def182cd"
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./coverage1.xml,./coverage2.xml
+        directory: ./coverage/reports/
+        flags: pytest
+        env_vars: OS,PYTHON
+        name: codecov-umbrella
+        fail_ci_if_error: true
+        path_to_write_report: ./coverage/codecov_report.txt
+        verbose: true
