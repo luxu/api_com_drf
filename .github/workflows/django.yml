@@ -42,7 +42,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pytest --cov=folder_principal/tests
+        pytest --cov=api/tests
     - name: Posting Coverage
       env:
         CODECOV_TOKEN: "bfc21594-7a74-4130-9af9-a992def182cd"
