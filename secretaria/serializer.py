@@ -5,4 +5,4 @@ from secretaria.models import Estudante
 class EstudanteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Estudante
-        fields = '__all__'
+        fields = "__all__"

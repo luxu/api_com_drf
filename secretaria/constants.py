@@ -1,5 +1,1 @@
-SEXO = (
-    ('M', 'Masculino'),
-    ('F', 'Feminino'),
-    ('O', 'Outros')
-)
+SEXO = (("M", "Masculino"), ("F", "Feminino"), ("O", "Outros"))
