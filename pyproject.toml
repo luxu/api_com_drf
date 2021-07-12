@@ -4,5 +4,6 @@ exclude = '''
   | migrations
   | .venv
   | manage.py
+  | api/settings.py
 )/
 '''
