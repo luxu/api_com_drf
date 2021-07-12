@@ -8,13 +8,29 @@
 * Rode as migrações.
 ````
 git clone https://github.com/luxu/api_com_drf
+````
+````
 cd api_com_drf
+````
+````
 python -m virtualenv .venv
+````
+````
 source .venv/bin/activate
+````
+````
 python -m pip install --upgrade pip
+````
+````
 pip install -r requirements.txt
+````
+````
 python contrib/env_gen.py
+````
+````
 python manage.py migrate
+````
+````
 python importando_estudantes.py
 ````
 
