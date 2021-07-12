@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.urls import include, path
 
-import secretaria
+from secretaria import urls
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include(secretaria.urls)),
+    path("", include(urls)),
 ]

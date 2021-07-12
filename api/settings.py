@@ -1,12 +1,16 @@
+# coding: utf-8
 from pathlib import Path
+
+import dj_database_url
+from decouple import config, Csv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = "django-insecure-66w(gn804jlrrx#$c&x=p&g@*2qb0t8#^&fii90s1oi^v&vo&a"
+DEBUG = config("DEBUG", cast=bool)
 
-DEBUG = True
+SECRET_KEY = config("SECRET_KEY")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=Csv())
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -54,16 +58,21 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "api.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
+
+DATABASES = {}
+DATABASES["default"] = dj_database_url.config(
+    conn_max_age=600, ssl_require=True, default=config("DATABASE_URL")
+)
+DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
 
 # Password validation
