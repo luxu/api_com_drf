@@ -37,10 +37,10 @@ python importando_estudantes.py
 ## endpoints
 
 * lista os estudantes ```` api/v1/listar_estudantes/ ````
-* detalhe do estudante ```` api/v1/detalhe_estudante/5/````
+* detalhe do estudante ```` api/v1/detalhe_estudante/<id>/````
 * novo estudante ```` api/v1/novo_estudante/````
-* edita o estudante ```` api/v1/editar_estudante/7/````
-* deleta o estudante ```` api/v1/apagar_estudante/7/````
+* edita o estudante ```` api/v1/editar_estudante/<id>/````
+* deleta o estudante ```` api/v1/apagar_estudante/<id>/````
 * busca pelo critério ```` api/v1/filtar_estudante/ (por nome, por data_nascimento, por sexo)````
 
 
